@@ -30,11 +30,11 @@ function AllQuestionsSection() {
           "670f9c1d0010e00f0181", // Database ID
           "670f9c2f002ebe7198f7"  // Collection ID
         );
-
-        const questionsList = response.documents;
+  
+        const questionsList = response.documents.reverse(); // Reverse the order
         setQuestions(questionsList);
         setFilteredQuestions(questionsList); // Initialize with all questions
-
+  
         // Count questions by category
         const counts = questionsList.reduce((acc, question) => {
           acc[question.category] = (acc[question.category] || 0) + 1;
@@ -47,9 +47,10 @@ function AllQuestionsSection() {
         setLoading(false);
       }
     };
-
+  
     fetchQuestions();
   }, []);
+  
 
   // Handle category change and filter questions
   const handleCategoryChange = (event) => {
